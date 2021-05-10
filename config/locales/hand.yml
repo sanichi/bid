@@ -1,0 +1,6 @@
+en:
+  hand:
+    errors:
+      over: Too many cards
+      under: Too few cards
+      suits: Too many suits
