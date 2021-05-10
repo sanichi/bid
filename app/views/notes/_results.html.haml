@@ -1,0 +1,7 @@
+- notes.matches.each do |note|
+  %tr
+    %td= link_to note.title, note
+    %td= note.user.name
+    %td.text-center= t("symbol.tick") if note.draft
+    %td.text-center= note.updated_at.strftime("%Y-%m-%d")
+= render "utils/pagination/links", pager: notes, columns: 4

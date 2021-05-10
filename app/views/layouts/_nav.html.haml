@@ -1,0 +1,21 @@
+%nav
+  = link_to root_path do
+    %img{src: "/logo.png", width: "30", height: "30", alt: "logo", loading: "lazy"}
+  %button{type: "button", "data-toggle" => "collapse", "data-target" => "#navbar"}
+    %span
+  #navbar.collapse.navbar-collapse
+    %ul.left
+      - if can?(:index, Note)
+        %li= link_to t("note.notes"), notes_path
+      - if can?(:index, User)
+        %li= link_to t("user.users"), users_path
+      - if can?(:env, :page)
+        %li= link_to t("pages.env.title"), env_path
+      - if can?(:help, :page)
+        %li= link_to t("pages.help.title"), help_path
+    %ul.right
+      - unless controller_name == "sessions"
+        - if current_user.guest?
+          %li= link_to t("session.sign_in"), new_session_path
+        - else
+          %li= link_to t("session.sign_out"), session_path, method: "delete"
