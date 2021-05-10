@@ -5,6 +5,6 @@ en:
     help:
       title: Help
     home:
-      description: Mark Orr’s minimal Rails template
-      keywords: bootstrap, cancancan, capistrano, capybara, factory_bot, faker, haml, jquery, meta-tags, rails, rbenv, rspec, postgressql
+      description: Spaced repetition for bridge bidding
+      keywords: bridge, bidding, spaced, repetition
       title: Home
