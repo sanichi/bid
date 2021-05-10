@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 describe Note do
-  let(:admin)  { create(:user, admin: true) }
-  let(:user)   { create(:user, admin: false) }
-  let(:data)   { build(:note) }
-  let!(:note1) { create(:note, user: admin, draft: false) }
-  let!(:note2) { create(:note, user: user, draft: true) }
+  let(:admin) { create(:user, admin: true) }
+  let(:user)  { create(:user, admin: false) }
+  let(:data)  { build(:note) }
+  let!(:note) { create(:note, user: admin, draft: false) }
 
-  context "users" do
+  context "admins" do
     before(:each) do
-      login(user)
+      login(admin)
       click_link t("note.notes")
     end
 
@@ -21,12 +20,12 @@ describe Note do
         click_button t("save")
 
         expect(page).to have_title data.title
-        expect(Note.count).to eq 3
+        expect(Note.count).to eq 2
         n = Note.first
         expect(n.title).to eq data.title
         expect(n.markdown).to eq data.markdown
         expect(n.draft).to eq true
-        expect(n.user).to eq user
+        expect(n.user).to eq admin
       end
 
       it "failure" do
@@ -35,14 +34,14 @@ describe Note do
         click_button t("save")
 
         expect(page).to have_title t("note.new")
-        expect(Note.count).to eq 2
+        expect(Note.count).to eq 1
         expect_error(page, "blank")
       end
     end
 
     context "edit" do
       it "title" do
-        click_link note2.title
+        click_link note.title
         click_link t("edit")
 
         expect(page).to have_title t("note.edit")
@@ -51,13 +50,13 @@ describe Note do
         click_button t("save")
 
         expect(page).to have_title data.title
-        expect(Note.count).to eq 2
-        n = Note.find(note2.id)
+        expect(Note.count).to eq 1
+        n = Note.find(note.id)
         expect(n.title).to eq data.title
       end
 
       it "draft" do
-        click_link note2.title
+        click_link note.title
         click_link t("edit")
 
         expect(page).to have_title t("note.edit")
@@ -65,34 +64,34 @@ describe Note do
         uncheck t("note.draft")
         click_button t("save")
 
-        expect(page).to have_title note2.title
-        expect(Note.count).to eq 2
-        n = Note.find(note2.id)
+        expect(page).to have_title note.title
+        expect(Note.count).to eq 1
+        n = Note.find(note.id)
         expect(n.draft).to eq false
       end
+    end
+  end
 
-      it "forbidden" do
-        click_link note1.title
-
-        expect(page).to_not have_css "a", text: t("edit")
-
-        visit edit_note_path(note1)
-
-        expect_forbidden page
-      end
+  context "users" do
+    before(:each) do
+      login(user)
+      click_link t("note.notes")
     end
 
-    context "delete" do
-      it "success" do
-        expect(Note.count).to eq 2
+    it "view" do
+      click_link note.title
+      expect(page).to have_title note.title
+    end
 
-        click_link note2.title
-        click_link t("edit")
-        click_link t("delete")
+    it "create" do
+      expect(page).to_not have_css "a", text: t("note.new")
+      visit new_note_path
+      expect_forbidden page
+    end
 
-        expect(page).to have_title t("note.notes")
-        expect(Note.count).to eq 1
-      end
+    it "edit" do
+      visit edit_note_path(note)
+      expect_forbidden(page)
     end
   end
 
@@ -103,21 +102,17 @@ describe Note do
 
     it "view" do
       expect(page).to_not have_css "a", text: t("note.notes")
-
-      visit note_path(note1)
-
+      visit note_path(note)
       expect_forbidden page
     end
 
     it "create" do
       visit new_note_path
-
       expect_forbidden page
     end
 
     it "edit" do
-      visit edit_note_path(note1)
-
+      visit edit_note_path(note)
       expect_forbidden(page)
     end
   end

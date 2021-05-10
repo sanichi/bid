@@ -9,7 +9,6 @@ class Ability
     unless user.guest?
       can :help, :page
       can :read, Note
-      can [:create, :update, :destroy], Note, user_id: user.id
     end
 
     can :home, :page
