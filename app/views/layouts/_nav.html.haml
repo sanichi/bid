@@ -5,6 +5,8 @@
     %span
   #navbar.collapse.navbar-collapse
     %ul.left
+      - if can?(:index, Problem)
+        %li= link_to t("problem.title"), problems_path
       - if can?(:index, Note)
         %li= link_to t("note.notes"), notes_path
       - if can?(:help, :page)
@@ -15,7 +17,6 @@
           .dropdown-menu
             = link_to t("user.users"), users_path
             = link_to t("pages.env.title"), env_path
-
     %ul.right
       - unless controller_name == "sessions"
         - if current_user.guest?

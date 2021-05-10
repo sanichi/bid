@@ -1,0 +1,16 @@
+en:
+  problem:
+    author: Author
+    draft: Draft
+    edit: Edit Problem
+    vul: Vulnerability
+    bids: Bidding
+    new: New Problem
+    hand: Hand
+    note: Note
+    title: Problems
+    vuls:
+      both: Both vul
+      na: Not specified
+      non: Not vul against vul
+      vul: Vul against non

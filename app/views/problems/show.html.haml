@@ -1,0 +1,16 @@
+- set_meta_tags title: @problem.vul
+
+%section
+  .header
+    %h3.d-inline= @problem.vul
+  .body
+    .div{class: center(xl: 4, lg: 6, md: 8, sm: 10)}
+      %p= @problem.hand
+      %p= @problem.bids
+      %p= t("problem.vuls.#{@problem.vul}")
+      - if @problem.note.present?
+        .note= @problem.html
+  .footer
+    - if can?(:edit, @problem)
+      = link_to t("edit"), edit_problem_path(@problem), class: "btn btn-info btn-sm"
+    = link_to t("problem.title"), problems_path, class: "btn btn-success btn-sm"

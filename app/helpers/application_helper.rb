@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def author_menu(selected)
+    opts = User.pluck(:name, :id)
+    opts.unshift [t("any"), ""]
+    options_for_select(opts, selected)
+  end
+
   def pagination_links(pager)
     links = Array.new
     links.push(link_to t("pagination.frst"), pager.frst_page, remote: pager.remote, id: "pagn_frst") if pager.after_start?
