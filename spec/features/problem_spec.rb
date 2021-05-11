@@ -32,16 +32,30 @@ describe Problem do
         expect(p.user).to eq admin
       end
 
-      it "failure" do
-        click_link t("problem.new")
-        fill_in t("problem.hand"), with: data.hand
-        fill_in t("problem.bids"), with: data.bids
-        select t("problem.vuls.#{data.vul}"), from: t("problem.vul")
-        click_button t("save")
+      context "failure" do
+        it "hand" do
+          click_link t("problem.new")
+          fill_in t("problem.bids"), with: data.bids
+          fill_in t("problem.note"), with: data.note
+          select t("problem.vuls.#{data.vul}"), from: t("problem.vul")
+          click_button t("save")
 
-        expect(page).to have_title t("problem.new")
-        expect(Problem.count).to eq 1
-        expect_error(page, "blank")
+          expect(page).to have_title t("problem.new")
+          expect_error(page, t("hand.errors.under"))
+          expect(Problem.count).to eq 1
+        end
+
+        it "note" do
+          click_link t("problem.new")
+          fill_in t("problem.hand"), with: data.hand
+          fill_in t("problem.bids"), with: data.bids
+          select t("problem.vuls.#{data.vul}"), from: t("problem.vul")
+          click_button t("save")
+
+          expect(page).to have_title t("problem.new")
+          expect_error(page, "blank")
+          expect(Problem.count).to eq 1
+        end
       end
     end
 

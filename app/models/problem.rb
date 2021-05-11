@@ -13,6 +13,8 @@ class Problem < ApplicationRecord
   validates :vul, inclusion: { in: VULS }
   validates :note, presence: true
 
+  validate :check_hand
+
   def self.search(matches, params, path, opt={})
     matches = matches.includes(:user)
     if sql = cross_constraint(params[:query], %w{note})
@@ -35,6 +37,15 @@ class Problem < ApplicationRecord
     hand&.squish!
     if note.present?
       self.note = note.strip.gsub(/\r\n/, "\n").gsub(/([^\S\n]*\n){2,}[^\S\n]*/, "\n\n")
+    end
+  end
+
+  def check_hand
+    h = Hand.new(hand)
+    if h.error?
+      errors.add(:hand, h.error)
+    else
+      self.hand = h.to_s
     end
   end
 end

@@ -14,6 +14,14 @@ describe Hand do
       end
     end
 
+    it "examples" do
+      Hand::EXAMPLES.each do |str|
+        h = Hand.new(str)
+        expect(h).to_not be_error
+        expect(h.to_s).to eq str
+      end
+    end
+
     it "allowed" do
       {
         "AQ9|KJT|T987|765" => ["AQ9KJTT987765", "aq9kjtt987765"],

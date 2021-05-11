@@ -17,6 +17,15 @@ class Hand
     "2" => 2,
   }
 
+  EXAMPLES = [
+    "84|KQJT9543|8|85",
+    "632|8543|973|754",
+    "|763|KJT853|AQ92",
+    "AQT9854|JT94||53",
+    "QJT53|32|Q9|Q652",
+    "AK863|65|73|Q864",
+  ]
+
   def initialize(input)
     parse(input.to_s.upcase.gsub(/\s+/, ""))
   end
