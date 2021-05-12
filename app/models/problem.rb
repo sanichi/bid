@@ -21,8 +21,17 @@ class Problem < ApplicationRecord
     if sql = cross_constraint(params[:query], %w{note})
       matches = matches.where(sql)
     end
+    if params[:shape].present? && params[:shape].match?(Hand::SHAPE)
+      matches = matches.where(shape: params[:shape])
+    end
     if (user_id = params[:user_id].to_i) > 0
       matches = matches.where(user_id: user_id)
+    end
+    if (min = params[:min].to_i) > 0
+      matches = matches.where("points >= ?", min)
+    end
+    if (max = params[:max].to_i) > 0
+      matches = matches.where("points <= ?", max)
     end
     paginate(matches, params, path, opt)
   end
@@ -47,6 +56,8 @@ class Problem < ApplicationRecord
       errors.add(:hand, h.error)
     else
       self.hand = h.to_s
+      self.shape = h.shape
+      self.points = h.points
     end
   end
 

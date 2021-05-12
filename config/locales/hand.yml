@@ -1,5 +1,7 @@
 en:
   hand:
+    points: Points
+    shape: Shape
     errors:
       over: Too many cards
       under: Too few cards

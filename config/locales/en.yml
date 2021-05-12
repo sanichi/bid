@@ -15,4 +15,6 @@ en:
     of: of
   symbol:
     cross: ✘
+    ge: ≥
+    le: ≤
     tick: ✔︎

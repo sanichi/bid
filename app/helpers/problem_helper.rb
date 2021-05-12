@@ -3,4 +3,10 @@ module ProblemHelper
     opts = Problem::VULS.map{ |v| [t("problem.vuls.#{v}"), v] }
     options_for_select(opts, selected)
   end
+
+  def problem_shape_menu(selected)
+    opts = Problem.pluck(:shape).uniq.sort.reverse
+    opts.unshift [t("any"), ""]
+    options_for_select(opts, selected)
+  end
 end

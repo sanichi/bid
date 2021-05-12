@@ -30,6 +30,8 @@ describe Problem do
         expect(p.note).to eq data.note
         expect(p.draft).to eq true
         expect(p.user).to eq admin
+        expect(p.shape).to match Hand::SHAPE
+        expect(p.points).to be >= 0
       end
 
       context "failure" do

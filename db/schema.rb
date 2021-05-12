@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_133306) do
+ActiveRecord::Schema.define(version: 2021_05_12_175956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2021_05_10_133306) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "shape", limit: 10
+    t.integer "points", limit: 2
     t.index ["user_id"], name: "index_problems_on_user_id"
   end
 
