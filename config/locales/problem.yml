@@ -14,10 +14,3 @@ en:
       na: Not specified
       non: Not vul against vul
       vul: Vul against non
-    short:
-      vul: Vul
-      vuls:
-        both: Both
-        na: "?"
-        non: Non
-        vul: Vul

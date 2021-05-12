@@ -5,7 +5,7 @@
     [:min,     t("symbol.ge"),   :text,   size: 2, placeholder: t("symbol.ge")],
     [:max,     t("symbol.le"),   :text,   size: 2, placeholder: t("symbol.le")],
     [:shape,   t("hand.shape"),  :select, menu: problem_shape_menu(params[:shape])],
-    [:user_id, t("note.author"), :select, menu: author_menu(params[:user_id])],
+    # [:user_id, t("note.author"), :select, menu: author_menu(params[:user_id])],
   ]
 
 %section
@@ -20,10 +20,10 @@
         %table.mt-4{class: "table table-bordered table-sm"}
           %thead
             %tr
-              %th= "#"
+              %th.text-center= "#"
               %th.text-center= t("hand.shape")
               %th.text-center= t("hand.points")
               %th.text-center= t("problem.draft")
-              %th= t("problem.author")
+              -# %th= t("problem.author")
           %tbody#results
             = render "results", problems: @problems
