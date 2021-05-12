@@ -3,8 +3,6 @@
     %td= link_to problem.id, problem
     %td.text-center= problem.shape
     %td.text-center= problem.points
-    %td= problem.bids
-    %td= t("problem.short.vuls.#{problem.vul}")
     %td.text-center= t("symbol.tick") if problem.draft
     %td= problem.user.name
 = render "utils/pagination/links", pager: problems, columns: 7

@@ -1,6 +1,8 @@
 - defined?(remote) || remote = true
 - defined?(button) || button = false
--# see https://www.tjvantoll.com/2013/01/01/enter-should-submit-forms-stop-messing-with-that/
+-# see:
+-# https://www.tjvantoll.com/2013/01/01/enter-should-submit-forms-stop-messing-with-that/
+-# https://stackoverflow.com/questions/27807853/html5-how-to-make-a-form-submit-after-pressing-enter-at-any-of-the-text-inputs
 
 = form_tag index, method: :get, remote: remote, class: "form-inline justify-content-center mt-3" do
   - inputs.each do | param, label, type, options |
@@ -8,3 +10,6 @@
     = render "utils/search/#{type}", {param: param, label: label}.merge(options || {})
   - if button
     = button_tag t("search"), type: "submit", class: "btn btn-success mb-1"
+  - else
+    -# to ensure forms with more than one text input submit when the enter key is pressed
+    = button_tag "x", type: "submit", class: "invisible"
