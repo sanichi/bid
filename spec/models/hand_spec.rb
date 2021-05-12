@@ -88,6 +88,35 @@ describe Hand do
         expect(h.clubs).to eq cards
       end
     end
+
+    it "shape" do
+      {
+        "5-4-3-1"  => ["4|T9653|762|QJ93", "AJ972|A842|Q83|5"],
+        "13-0-0-0" => ["||AKQJT98765432|", "|AKQJT98765432||"],
+        "4-4-4-1" => ["T954|AK43|7|T765", "A|A652|AJT5|KQ32"],
+      }.each_pair do |shape,strs|
+        strs.each do |str|
+          h = Hand.new(str)
+          expect(h).to_not be_error
+          expect(h.shape).to eq shape
+        end
+      end
+    end
+
+    it "points" do
+      {
+        0   => ["432|432|432|5432", "987654||2|987654"],
+        10  => ["Q3|KJ643|A76|876", "KJ972|QJ953|98|K"],
+        19  => ["AKJ|3|KQJT98|KQ8", "|AKQ9|AKQT|J9876"],
+        37  => ["AKQJ|AKQ|AKQ|AKQ"],
+      }.each_pair do |points,strs|
+        strs.each do |str|
+          h = Hand.new(str)
+          expect(h).to_not be_error
+          expect(h.points).to eq points
+        end
+      end
+    end
   end
 
   describe "invalid" do

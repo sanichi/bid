@@ -52,6 +52,22 @@ class Hand
     @cards[3]
   end
 
+  def shape
+    @cards.map(&:length).sort.reverse.join("-")
+  end
+
+  def points
+    @cards.flatten.map do |card|
+      case card
+      when "A" then 4
+      when "K" then 3
+      when "Q" then 2
+      when "J" then 1
+      else          0
+      end
+    end.sum
+  end
+
   private
 
   def parse(str)
