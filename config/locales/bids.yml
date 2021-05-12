@@ -1,0 +1,9 @@
+en:
+  bids:
+    errors:
+      char: Invalid character
+      double: Illegal double
+      level: Invalid bid
+      none: Must be a least one bid
+      pass: Too many passes
+      redouble: Illegal redouble

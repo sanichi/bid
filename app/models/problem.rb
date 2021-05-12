@@ -14,6 +14,7 @@ class Problem < ApplicationRecord
   validates :note, presence: true
 
   validate :check_hand
+  validate :check_bids
 
   def self.search(matches, params, path, opt={})
     matches = matches.includes(:user)
@@ -46,6 +47,15 @@ class Problem < ApplicationRecord
       errors.add(:hand, h.error)
     else
       self.hand = h.to_s
+    end
+  end
+
+  def check_bids
+    b = Bids.new(bids)
+    if b.error?
+      errors.add(:bids, b.error)
+    else
+      self.bids = b.to_s
     end
   end
 end
