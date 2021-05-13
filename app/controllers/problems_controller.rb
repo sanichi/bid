@@ -32,6 +32,6 @@ class ProblemsController < ApplicationController
   private
 
   def resource_params
-    params.require(:problem).permit(:bids, :draft, :hand, :note, :vul)
+    params.require(:problem).permit(:bids, :hand, :note, :vul)
   end
 end

@@ -4,7 +4,6 @@ FactoryBot.define do
     sequence(:bids) { |i| Bids::EXAMPLES[i % Bids::EXAMPLES.length] }
     vul             { Problem::VULS.sample }
     note            { Faker::Lorem.paragraphs(number: 3) }
-    draft           { [true, false].sample }
     user
   end
 end

@@ -4,7 +4,7 @@ describe Problem do
   let(:admin) { create(:user, admin: true) }
   let(:user) { create(:user, admin: false) }
   let(:data) { build(:problem) }
-  let!(:problem) { create(:problem, user: admin, draft: true) }
+  let!(:problem) { create(:problem, user: admin) }
 
   context "admins" do
     before(:each) do
@@ -28,7 +28,6 @@ describe Problem do
         expect(p.bids).to eq data.bids
         expect(p.vul).to eq data.vul
         expect(p.note).to eq data.note
-        expect(p.draft).to eq true
         expect(p.user).to eq admin
         expect(p.shape).to match Hand::SHAPE
         expect(p.points).to be >= 0
@@ -75,21 +74,6 @@ describe Problem do
         expect(Problem.count).to eq 1
         p = Problem.order(:updated_at).last
         expect(p.note).to eq data.note
-      end
-
-      it "draft" do
-        click_link problem.id.to_s
-        click_link t("edit")
-
-        expect(page).to have_title t("problem.edit")
-
-        uncheck t("problem.draft")
-        click_button t("save")
-
-        expect(page).to have_title problem.vul
-        expect(Problem.count).to eq 1
-        p = Problem.order(:updated_at).last
-        expect(p.draft).to eq false
       end
     end
   end
