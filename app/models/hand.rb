@@ -38,6 +38,15 @@ class Hand
     @cards.map{ |suit| suit.join("") }.join("|")
   end
 
+  def hand
+    {
+      "S" => spades,
+      "H" => hearts,
+      "D" => diamonds,
+      "C" => clubs,
+    }
+  end
+
   def spades
     @cards[0]
   end

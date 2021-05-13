@@ -40,9 +40,12 @@ class Problem < ApplicationRecord
       matches = matches.where(user_id: user_id)
     end
     case params[:order]
-    when "points"   then matches = matches.order(points: :desc, shape: :asc)
-    when "shape"    then matches = matches.order(shape: :asc, points: :desc)
-    when "category" then matches = matches.order(category: :asc, points: :desc)
+    when "shape"
+      matches = matches.order(shape: :asc, points: :desc)
+    when "category"
+      matches = matches.order(category: :asc, points: :desc)
+    else
+      matches = matches.order(points: :desc, shape: :asc)
     end
     paginate(matches, params, path, opt)
   end
