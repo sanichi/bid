@@ -1,12 +1,22 @@
 - set_meta_tags title: @problem.category
+- hand = Hand.new(@problem.hand)
+- bids = Bids.new(@problem.bids).bids
 
 %section
   .header
     %h3.d-inline= @problem.category
   .body
     .div{class: center(xl: 4, lg: 6, md: 8, sm: 10)}
+      .row
+        .bid-cell.border-top N
+        .bid-cell.border-top E
+        .bid-cell.border-top S
+        .bid-cell.border-top.border-right W
+        - bids.each_with_index do |b, i|
+          .bid-cell{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b)
+        - (bids.length..(bids.length/4.0).ceil * 4 - 1).to_a.each do |i|
+          .bid-cell{class: i % 4 == 3 ? 'border-right' : ''}
       %p= @problem.hand
-      %p= @problem.bids
       %p= t("problem.vuls.#{@problem.vul}")
       %p= @problem.category
       .note= @problem.html

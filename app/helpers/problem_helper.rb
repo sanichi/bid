@@ -24,4 +24,15 @@ module ProblemHelper
     ]
     options_for_select(opts, selected)
   end
+
+  def show_bid(bid)
+    case bid
+    when /\A(P|X|XX)\Z/
+      t("bids.#{$1}")
+    when /\A(\d)([CDHSN])\z/
+      $1 + t("bids.#{$2}")
+    else
+      bid
+    end
+  end
 end

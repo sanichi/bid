@@ -1,5 +1,13 @@
 en:
   bids:
+    P: −
+    C: ♣︎
+    D: ♢
+    H: ♡
+    S: ♠︎
+    N: NT
+    X: ⨉
+    XX: ⨉⨉
     errors:
       char: Invalid character
       double: Illegal double

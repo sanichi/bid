@@ -1,5 +1,5 @@
 class Bids
-  attr_reader :error
+  attr_reader :error, :bids
 
   PASS = /P(?:ASS)?/
   BID = /[1-7](?:C|D|H|S|NT?)/
