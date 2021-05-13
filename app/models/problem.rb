@@ -33,6 +33,10 @@ class Problem < ApplicationRecord
     if (max = params[:max].to_i) > 0
       matches = matches.where("points <= ?", max)
     end
+    case params[:order]
+    when "points" then matches = matches.order(points: :desc)
+    when "shape" then matches = matches.order(shape: :asc)
+    end
     paginate(matches, params, path, opt)
   end
 
