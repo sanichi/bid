@@ -1,7 +1,8 @@
 - problems.matches.each do |problem|
   %tr
     %td.text-center= link_to problem.id, problem
-    %td.text-center= problem.shape
     %td.text-center= problem.points
+    %td.text-center= problem.shape
+    %td= problem.category
     -# %td= problem.user.name
-= render "utils/pagination/links", pager: problems, columns: 3
+= render "utils/pagination/links", pager: problems, columns: 4

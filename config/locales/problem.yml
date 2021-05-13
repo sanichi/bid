@@ -1,6 +1,7 @@
 en:
   problem:
     author: Author
+    category: Category
     edit: Edit Problem
     vul: Vulnerability
     bids: Bidding

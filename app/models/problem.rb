@@ -3,6 +3,8 @@ class Problem < ApplicationRecord
   include Pageable
   include Remarkable
 
+  CAT_FORMAT = /\A[\w\d &-]+\z/
+  MAX_CATEGORY = 50
   MAX_HAND = 16
   VULS = %w/na both non vul/
 
@@ -10,8 +12,9 @@ class Problem < ApplicationRecord
 
   before_validation :normalize_attributes
 
-  validates :vul, inclusion: { in: VULS }
+  validates :category, presence: true, length: { maximum: MAX_CATEGORY }, format: { with: CAT_FORMAT }
   validates :note, presence: true
+  validates :vul, inclusion: { in: VULS }
 
   validate :check_hand
   validate :check_bids
@@ -24,18 +27,22 @@ class Problem < ApplicationRecord
     if params[:shape].present? && params[:shape].match?(Hand::SHAPE)
       matches = matches.where(shape: params[:shape])
     end
-    if (user_id = params[:user_id].to_i) > 0
-      matches = matches.where(user_id: user_id)
-    end
     if (min = params[:min].to_i) > 0
       matches = matches.where("points >= ?", min)
     end
     if (max = params[:max].to_i) > 0
       matches = matches.where("points <= ?", max)
     end
+    if params[:category]&.match(CAT_FORMAT)
+      matches = matches.where(category: params[:category])
+    end
+    if (user_id = params[:user_id].to_i) > 0
+      matches = matches.where(user_id: user_id)
+    end
     case params[:order]
-    when "points" then matches = matches.order(points: :desc)
-    when "shape" then matches = matches.order(shape: :asc)
+    when "points"   then matches = matches.order(points: :desc, shape: :asc)
+    when "shape"    then matches = matches.order(shape: :asc, points: :desc)
+    when "category" then matches = matches.order(category: :asc, points: :desc)
     end
     paginate(matches, params, path, opt)
   end
@@ -47,8 +54,7 @@ class Problem < ApplicationRecord
   private
 
   def normalize_attributes
-    bids&.squish!
-    hand&.squish!
+    category&.squish!
     if note.present?
       self.note = note.strip.gsub(/\r\n/, "\n").gsub(/([^\S\n]*\n){2,}[^\S\n]*/, "\n\n")
     end

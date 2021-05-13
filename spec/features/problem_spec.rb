@@ -17,16 +17,18 @@ describe Problem do
         click_link t("problem.new")
         fill_in t("problem.hand"), with: data.hand
         fill_in t("problem.bids"), with: data.bids
-        fill_in t("problem.note"), with: data.note
         select t("problem.vuls.#{data.vul}"), from: t("problem.vul")
+        fill_in t("problem.category"), with: data.category
+        fill_in t("problem.note"), with: data.note
         click_button t("save")
 
-        expect(page).to have_title data.vul
+        expect(page).to have_title data.category
         expect(Problem.count).to eq 2
         p = Problem.order(:created_at).last
         expect(p.hand).to eq data.hand
         expect(p.bids).to eq data.bids
         expect(p.vul).to eq data.vul
+        expect(p.category).to eq data.category
         expect(p.note).to eq data.note
         expect(p.user).to eq admin
         expect(p.shape).to match Hand::SHAPE
@@ -37,8 +39,9 @@ describe Problem do
         it "hand" do
           click_link t("problem.new")
           fill_in t("problem.bids"), with: data.bids
-          fill_in t("problem.note"), with: data.note
           select t("problem.vuls.#{data.vul}"), from: t("problem.vul")
+          fill_in t("problem.category"), with: data.category
+          fill_in t("problem.note"), with: data.note
           click_button t("save")
 
           expect(page).to have_title t("problem.new")
@@ -51,6 +54,7 @@ describe Problem do
           fill_in t("problem.hand"), with: data.hand
           fill_in t("problem.bids"), with: data.bids
           select t("problem.vuls.#{data.vul}"), from: t("problem.vul")
+          fill_in t("problem.category"), with: data.category
           click_button t("save")
 
           expect(page).to have_title t("problem.new")
@@ -70,7 +74,7 @@ describe Problem do
         fill_in t("problem.note"), with: data.note
         click_button t("save")
 
-        expect(page).to have_title problem.vul
+        expect(page).to have_title problem.category
         expect(Problem.count).to eq 1
         p = Problem.order(:updated_at).last
         expect(p.note).to eq data.note

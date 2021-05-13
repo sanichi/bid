@@ -5,13 +5,23 @@ module ProblemHelper
   end
 
   def problem_shape_menu(selected)
-    opts = Problem.pluck(:shape).uniq.sort.reverse
+    opts = Problem.pluck(:shape).uniq.sort.reverse.map{ |o| [o, o] }
+    opts.unshift [t("any"), ""]
+    options_for_select(opts, selected)
+  end
+
+  def problem_category_menu(selected)
+    opts = Problem.pluck(:category).uniq.sort.map{ |o| [o.truncate(15), o] }
     opts.unshift [t("any"), ""]
     options_for_select(opts, selected)
   end
 
   def problem_order_menu(selected)
-    opts = %w/points shape/.map{ |o| [t("hand.#{o}"), o] }
+    opts = [
+      [t("hand.points"),        "points"],
+      [t("hand.shape"),          "shape"],
+      [t("problem.category"), "category"],
+    ]
     options_for_select(opts, selected)
   end
 end
