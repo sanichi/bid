@@ -8,6 +8,7 @@ en:
     new: New Problem
     hand: Hand
     note: Note
+    show: 'Problem %{id}'
     title: Problems
     vuls:
       both: Both vul

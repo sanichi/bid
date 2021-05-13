@@ -3,6 +3,7 @@ class ProblemsController < ApplicationController
 
   def index
     @problems = Problem.search(@problems, params, problems_path, per_page: 10)
+    session[:last_problem_search] = @problems.matches.pluck(:id).join(",")
   end
 
   def create

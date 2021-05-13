@@ -22,9 +22,9 @@ describe Problem do
         fill_in t("problem.note"), with: data.note
         click_button t("save")
 
-        expect(page).to have_title data.category
         expect(Problem.count).to eq 2
         p = Problem.order(:created_at).last
+        expect(page).to have_title t("problem.show", id: p.id)
         expect(p.hand).to eq data.hand
         expect(p.bids).to eq data.bids
         expect(p.vul).to eq data.vul
@@ -74,7 +74,7 @@ describe Problem do
         fill_in t("problem.note"), with: data.note
         click_button t("save")
 
-        expect(page).to have_title problem.category
+        expect(page).to have_title t("problem.show", id: problem.id)
         expect(Problem.count).to eq 1
         p = Problem.order(:updated_at).last
         expect(p.note).to eq data.note
