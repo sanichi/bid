@@ -1,28 +1,31 @@
 - title = t("problem.show", id: @problem.id)
 - set_meta_tags title: title
 - hand = Hand.new(@problem.hand).hand
-- bids = Bids.new(@problem.bids).bids
+- bdng = Bids.new(@problem.bids)
+- bids = bdng.bids
 
 %section
   .header
     %h3.d-inline= title
     .float-right.mt-1= problem_pagination_links(@problem.id)
   .body
+    %p.text-center
+      %small
+        = succeed(":") do
+          = t("hand.dealer")
+        = succeed(",") do
+          = bdng.dealer
+        = succeed(":") do
+          = t("problem.short.vul")
+        = problem_vulnerability(@problem.vul)
     .div{class: center(xl: 4, lg: 6, md: 8, sm: 10)}
       .row
-        .bid-div.border-top N
-        .bid-div.border-top E
-        .bid-div.border-top S
-        .bid-div.border-top.border-right W
+        - bdng.bidders.each_with_index do |b, i|
+          .bid-div.bid-hdr{class: i % 4 == 3 ? 'border-right' : ''}= b
         - bids.each_with_index do |b, i|
-          .bid-div{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b)
+          .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b)
         - (bids.length..(bids.length/4.0).ceil * 4 - 1).to_a.each do |i|
-          .bid-div{class: i % 4 == 3 ? 'border-right' : ''}
-      %p.text-center
-        %small
-          = succeed(":") do
-            = t("problem.short.vul").downcase
-          = t("problem.vuls.#{@problem.vul}").downcase
+          .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}
       %table.hand-tab
         %tbody
           - hand.each_pair do |suit, cards|

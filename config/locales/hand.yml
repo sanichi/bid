@@ -1,5 +1,6 @@
 en:
   hand:
+    dealer: Dealer
     points: Points
     shape: Shape
     errors:

@@ -12,9 +12,11 @@ en:
     title: Problems
     vuls:
       both: Both
+      ew: E/W
       na: Unspecified
       non: Them
       none: Neither
+      ns: N/S
       vul: Us
     short:
       vul: Vul

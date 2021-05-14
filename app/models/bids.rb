@@ -30,6 +30,14 @@ class Bids
     @bids.join("|")
   end
 
+  def bidders
+    @bidders ||= %w/S W N E/.rotate(1 - @bids.length)
+  end
+
+  def dealer
+    bidders.first
+  end
+
   private
 
   def parse(str)

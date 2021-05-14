@@ -38,6 +38,17 @@ module ProblemHelper
     options_for_select(opts, selected)
   end
 
+  def problem_vulnerability(vul)
+    case vul
+    when "vul"
+      t("problem.vuls.ns")
+    when "non"
+      t("problem.vuls.ew")
+    else
+      t("problem.vuls.#{vul}").downcase
+    end
+  end
+
   def problem_pagination_links(id)
     ids = session[:last_problem_list].to_s.split(",")
     return unless ids.length > 0
