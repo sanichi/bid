@@ -73,8 +73,10 @@ module ProblemHelper
     case bid
     when /\A(P|X|XX)\Z/
       t("bids.#{$1}")
-    when /\A(\d)([CDHSN])\z/
+    when /\A(\d)([CSN])\z/
       $1 + t("bids.#{$2}")
+    when /\A(\d)([DH])\z/
+      raw('%s<span class="red-suit">%s</span>' % [$1, t("bids.#{$2}")])
     else
       bid
     end
