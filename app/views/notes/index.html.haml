@@ -8,8 +8,6 @@
 %section
   .header{class: "#{can?(:create, Note) ? '' : 'text-center'}"}
     %h3.d-inline= t("note.notes")
-    - if can?(:create, Note)
-      .float-right.mt-1= link_to t("note.new"), new_note_path, class: "btn btn-info btn-sm"
   .body
     = render "utils/search/form", index: notes_path, inputs: inputs
     %table.mt-4{class: "table table-bordered table-sm"}
@@ -21,3 +19,6 @@
           %th.text-center= t("note.updated")
       %tbody{id: "results"}
         = render "results", notes: @notes
+  - if can?(:create, Note)
+    .footer
+      = link_to t("note.new"), new_note_path, class: "btn btn-info btn-sm"

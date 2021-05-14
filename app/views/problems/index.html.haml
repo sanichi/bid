@@ -14,8 +14,6 @@
 %section
   .header{class: "#{can?(:create, Problem) ? '' : 'text-center'}"}
     %h3.d-inline= t("problem.title")
-    - if can?(:create, Problem)
-      .float-right.mt-1= link_to t("problem.new"), new_problem_path, class: "btn btn-info btn-sm"
   .body
     = render "utils/search/form", index: problems_path, inputs: inputs
     .row
@@ -32,3 +30,5 @@
             = render "results", problems: @problems
   .footer
     = link_to t("reset"), problems_path, class: "btn btn-success btn-sm"
+    - if can?(:create, Problem)
+      = link_to t("problem.new"), new_problem_path, class: "btn btn-info btn-sm"

@@ -11,7 +11,10 @@ en:
     show: 'Problem %{id}'
     title: Problems
     vuls:
-      both: Both vul
-      na: Not specified
-      non: Not vul against vul
-      vul: Vul against non
+      both: Both
+      na: Unspecified
+      non: Them
+      none: Neither
+      vul: Us
+    short:
+      vul: Vul

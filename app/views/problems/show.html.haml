@@ -17,14 +17,19 @@
           .bid-div{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b)
         - (bids.length..(bids.length/4.0).ceil * 4 - 1).to_a.each do |i|
           .bid-div{class: i % 4 == 3 ? 'border-right' : ''}
-        %table.hand-tab
-          %tbody
-            - hand.each_pair do |suit, cards|
-              %tr
-                %td= t("bids.#{suit}")
-                %td
-                  - cards.each do |card|
-                    = card
+      %p.text-center
+        %small
+          = succeed(":") do
+            = t("problem.short.vul").downcase
+          = t("problem.vuls.#{@problem.vul}").downcase
+      %table.hand-tab
+        %tbody
+          - hand.each_pair do |suit, cards|
+            %tr
+              %td= t("bids.#{suit}")
+              %td
+                - cards.each do |card|
+                  = card
   .footer
     - if can?(:edit, @problem)
       = link_to t("edit"), edit_problem_path(@problem), class: "btn btn-info btn-sm"
