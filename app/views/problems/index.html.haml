@@ -30,3 +30,5 @@
               -# %th= t("problem.author")
           %tbody#results
             = render "results", problems: @problems
+  .footer
+    = link_to t("reset"), problems_path, class: "btn btn-success btn-sm"
