@@ -2,7 +2,8 @@ class ProblemsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @problems = Problem.search(@problems, params, problems_path, per_page: 10)
+    per_page = helpers.problems_per_page(params[:per_page])
+    @problems = Problem.search(@problems, params, problems_path, per_page: per_page)
     session[:last_problem_search] = @problems.matches.pluck(:id).join(",")
   end
 

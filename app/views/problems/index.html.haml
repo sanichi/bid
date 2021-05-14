@@ -7,6 +7,7 @@
     [:shape,    t("hand.shape"),       :select, menu: problem_shape_menu(params[:shape])],
     [:category, t("problem.category"), :select, menu: problem_category_menu(params[:category])],
     [:order,    t("order"),            :select, menu: problem_order_menu(params[:order])],
+    [:per_page, t("per_page"),         :select, menu: problems_per_page_menu(params[:per_page])],
     # [:user_id,  t("note.author"), :select, menu: author_menu(params[:user_id])],
   ]
 
