@@ -59,12 +59,12 @@ module ProblemHelper
     if ind == 0
       parts.push session[:prev_problem_page] if session[:prev_problem_page].present?
     else
-      parts.push link_to(t("pagination.prev"), problem_path(ids[ind-1]))
+      parts.push link_to(t("pagination.prev"), problem_path(ids[ind-1]), id: "prev_link")
     end
     if ind + 1 == ids.length
       parts.push session[:next_problem_page] if session[:next_problem_page].present?
     else
-      parts.push link_to(t("pagination.next"), problem_path(ids[ind+1]))
+      parts.push link_to(t("pagination.next"), problem_path(ids[ind+1]), id: "next_link")
     end
     raw parts.join(t("pagination.sep"))
   end

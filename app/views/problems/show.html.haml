@@ -4,6 +4,9 @@
 - bdng = Bids.new(@problem.bids)
 - bids = bdng.bids
 
+- content_for :javascript do
+  = render partial: "show", formats: :js
+
 %section
   .header
     %h3.d-inline= title
