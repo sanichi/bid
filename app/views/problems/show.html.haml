@@ -34,6 +34,8 @@
               %td
                 - cards.each do |card|
                   = card
+  .body.border-top
+    .note= @problem.html
   .footer
     = link_to t("problem.title"), problems_path, class: "btn btn-success btn-sm"
     - if can?(:edit, @problem)
