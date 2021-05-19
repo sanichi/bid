@@ -88,7 +88,7 @@ class Problem < ApplicationRecord
     text.gsub(/\{([^}]+)\}/) do |match|
       title = $1
       if title.match(/[\w\d\s\&-]+/)
-        notes = Note.where(draft: false).where("title ILIKE ?", "%#{title}%")
+        notes = Note.where("title ILIKE ?", "%#{title}%")
         if notes.count == 1
           "[#{title}](/notes/#{notes.first.id})"
         else
