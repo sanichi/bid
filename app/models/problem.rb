@@ -1,5 +1,6 @@
 class Problem < ApplicationRecord
   include Constrainable
+  include Linkable
   include Pageable
   include Remarkable
 
@@ -80,23 +81,6 @@ class Problem < ApplicationRecord
       errors.add(:bids, b.error)
     else
       self.bids = b.to_s
-    end
-  end
-
-  def link_notes(text)
-    return text unless text.present?
-    text.gsub(/\{([^}]+)\}/) do |match|
-      title = $1
-      if title.match(/[\w\d\s\&-]+/)
-        notes = Note.where("title ILIKE ?", "%#{title}%")
-        if notes.count == 1
-          "[#{title}](/notes/#{notes.first.id})"
-        else
-          match
-        end
-      else
-        match
-      end
     end
   end
 end

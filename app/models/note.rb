@@ -1,5 +1,6 @@
 class Note < ApplicationRecord
   include Constrainable
+  include Linkable
   include Pageable
   include Remarkable
 
@@ -26,7 +27,7 @@ class Note < ApplicationRecord
   end
 
   def html
-    to_html(markdown)
+    to_html(link_notes(markdown))
   end
 
   private
