@@ -34,6 +34,6 @@ class NotesController < ApplicationController
   private
 
   def resource_params
-    params.require(:note).permit(:draft, :markdown, :title)
+    params.require(:note).permit(:markdown, :title)
   end
 end

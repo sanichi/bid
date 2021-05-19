@@ -4,7 +4,7 @@ describe Note do
   let(:admin) { create(:user, admin: true) }
   let(:user)  { create(:user, admin: false) }
   let(:data)  { build(:note) }
-  let!(:note) { create(:note, user: admin, draft: false) }
+  let!(:note) { create(:note, user: admin) }
 
   context "admins" do
     before(:each) do
@@ -24,7 +24,6 @@ describe Note do
         n = Note.first
         expect(n.title).to eq data.title
         expect(n.markdown).to eq data.markdown
-        expect(n.draft).to eq true
         expect(n.user).to eq admin
       end
 
@@ -53,21 +52,6 @@ describe Note do
         expect(Note.count).to eq 1
         n = Note.find(note.id)
         expect(n.title).to eq data.title
-      end
-
-      it "draft" do
-        click_link note.title
-        click_link t("edit")
-
-        expect(page).to have_title t("note.edit")
-
-        uncheck t("note.draft")
-        click_button t("save")
-
-        expect(page).to have_title note.title
-        expect(Note.count).to eq 1
-        n = Note.find(note.id)
-        expect(n.draft).to eq false
       end
     end
   end

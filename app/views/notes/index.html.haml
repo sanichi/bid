@@ -15,7 +15,6 @@
         %tr
           %th= t("note.title")
           %th= t("note.author")
-          %th.text-center= t("note.draft")
           %th.text-center= t("note.updated")
       %tbody{id: "results"}
         = render "results", notes: @notes
