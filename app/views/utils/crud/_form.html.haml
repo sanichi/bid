@@ -2,7 +2,7 @@
 
 .row
   %div{class: center}
-    = form_for object, html: { class: "crud" } do |form|
+    = form_with model: object, html: { class: "crud" } do |form|
       %section
         .header.text-center
           %h4.d-inline= title
