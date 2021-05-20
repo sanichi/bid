@@ -17,16 +17,12 @@ module ProblemHelper
     options_for_select(opts, selected)
   end
 
-  def problem_shape_menu(selected)
-    opts = Problem.pluck(:shape).uniq.sort.reverse.map{ |o| [o, o] }
-    opts.unshift [t("any"), ""]
-    options_for_select(opts, selected)
+  def problem_shape_data
+    Problem.pluck(:shape).uniq.sort.reverse
   end
 
-  def problem_category_menu(selected)
-    opts = Problem.pluck(:category).uniq.sort.map{ |o| [o.truncate(15), o] }
-    opts.unshift [t("any"), ""]
-    options_for_select(opts, selected)
+  def problem_category_data
+    Problem.pluck(:category).uniq.sort
   end
 
   def problem_order_menu(selected)

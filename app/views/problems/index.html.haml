@@ -1,13 +1,13 @@
 :ruby
   set_meta_tags title: t("problem.title")
   inputs = [
-    [:min,      t("symbol.ge"),        :text,   size: 2, placeholder: t("symbol.ge"), cols: "md-1"],
-    [:max,      t("symbol.le"),        :text,   size: 2, placeholder: t("symbol.le"), cols: "md-1"],
-    [:shape,    t("hand.shape"),       :select, menu: problem_shape_menu(params[:shape]), cols: "md-2"],
-    [:category, t("problem.category"), :select, menu: problem_category_menu(params[:category]), cols: "md-2"],
-    [:query,    t("search"),           :text,   size: 8, placeholder: t("problem.note"), cols: "md-3"],
-    [:order,    t("order"),            :select, menu: problem_order_menu(params[:order]), cols: "md-2"],
-    [:per_page, t("per_page"),         :select, menu: problems_per_page_menu(params[:per_page]), cols: "md-1"],
+    [:min,      t("symbol.ge"),        :text,   "md-1", size: 2, placeholder: t("symbol.ge")],
+    [:max,      t("symbol.le"),        :text,   "md-1", size: 2, placeholder: t("symbol.le")],
+    [:shape,    t("hand.shape"),       :list,   "md-2", data: problem_shape_data],
+    [:category, t("problem.category"), :list,   "md-2", data: problem_category_data],
+    [:query,    t("search"),           :text,   "md-3", size: 8, placeholder: t("problem.note")],
+    [:order,    t("order"),            :select, "md-2", menu: problem_order_menu(params[:order])],
+    [:per_page, t("per_page"),         :select, "md-1", menu: problems_per_page_menu(params[:per_page])],
   ]
 
 %section

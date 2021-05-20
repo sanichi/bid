@@ -29,7 +29,7 @@ module ApplicationHelper
     controller_name == "pages" && action_name == "home"
   end
 
-  def cols(s)
+  def col(s)
     case s
     when true
       "col"
