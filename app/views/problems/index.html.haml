@@ -1,14 +1,13 @@
 :ruby
   set_meta_tags title: t("problem.title")
   inputs = [
-    [:min,      t("symbol.ge"),        :text,   size: 2, placeholder: t("symbol.ge")],
-    [:max,      t("symbol.le"),        :text,   size: 2, placeholder: t("symbol.le")],
-    [:shape,    t("hand.shape"),       :select, menu: problem_shape_menu(params[:shape])],
-    [:category, t("problem.category"), :select, menu: problem_category_menu(params[:category])],
-    [:query,    t("search"),           :text,   size: 8, placeholder: t("problem.note")],
-    [:order,    t("order"),            :select, menu: problem_order_menu(params[:order])],
-    [:per_page, t("per_page"),         :select, menu: problems_per_page_menu(params[:per_page])],
-    # [:user_id,  t("note.author"), :select, menu: author_menu(params[:user_id])],
+    [:min,      t("symbol.ge"),        :text,   size: 2, placeholder: t("symbol.ge"), cols: "md-1"],
+    [:max,      t("symbol.le"),        :text,   size: 2, placeholder: t("symbol.le"), cols: "md-1"],
+    [:shape,    t("hand.shape"),       :select, menu: problem_shape_menu(params[:shape]), cols: "md-2"],
+    [:category, t("problem.category"), :select, menu: problem_category_menu(params[:category]), cols: "md-2"],
+    [:query,    t("search"),           :text,   size: 8, placeholder: t("problem.note"), cols: "md-3"],
+    [:order,    t("order"),            :select, menu: problem_order_menu(params[:order]), cols: "md-2"],
+    [:per_page, t("per_page"),         :select, menu: problems_per_page_menu(params[:per_page]), cols: "md-1"],
   ]
 
 %section
@@ -31,4 +30,4 @@
   .footer
     = link_to t("reset"), problems_path, class: "btn btn-success btn-sm"
     - if can?(:create, Problem)
-      = link_to t("problem.new"), new_problem_path, class: "btn btn-info btn-sm"
+      = link_to t("problem.new"), new_problem_path, class: "btn btn-primary btn-sm"

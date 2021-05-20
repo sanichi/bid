@@ -18,14 +18,8 @@ nav
       @extend .navbar-toggler-icon
 
   #navbar
-    ul
+    &>ul
       @extend .navbar-nav
-
-      &.left
-        @extend .mr-auto
-
-      &.right
-        @extend .ml-auto
 
       &>li
         @extend .nav-item
@@ -33,11 +27,11 @@ nav
         &>a
           @extend .nav-link
 
-        .dropdown-menu
-          @extend .p-2, .p-md-0
-
-          &>a
-            @extend .nav-link, .dropdown-item
+      &>li.dropdown
+        &>ul
+          &>li
+            &>a
+              @extend .dropdown-item
 
 // Sections
 section
@@ -48,6 +42,7 @@ section
 
   .body
     @extend .card-body
+    overflow: hidden
 
   .footer
     @extend .card-footer
@@ -68,33 +63,16 @@ section
 
 // Crud forms
 form.crud
-  margin-top: 1.5rem
-
-  label
-    font-size: 1.1rem
-    font-weight: 600
-    display: block
-
-  input:not([type="checkbox"]):not([type="submit"]), textarea, select:not(.datetime)
-    @extend .form-control
-    margin-bottom: 0.75rem
-    width: 100%
 
   textarea
-    @extend .text-monospace
+    @extend .font-monospace
     font-size: 0.9rem
     height: 100%
 
-  input[type="checkbox"]
-    // @extend .form-check-input   // this is causing problems
-    width: 20px
-    height: 20px
-
   div.field_with_errors
-    display: inline
     label
       color: $red
-    input[type="text"], textarea, select
+    input[type="text"], input[type="password"], textarea, select
       background: lighten($pink, 40%)
 
 // Flash notices. Note that, for dismissal, the class "alert" needs to be explicitly present in the HTML.
@@ -113,12 +91,16 @@ form.crud
 pre
   @extend .border, .border-dark, .p-2
 
+// Links
+a
+  @extend .text-decoration-none
+
 // Divs for bids
 div.bid-div
-  @extend .col-3, .text-center, .border-left, .border-bottom, .border-white
+  @extend .col-3, .text-center, .border-start, .border-bottom, .border-white
 
 div.bid-hdr
-  @extend .text-white, .font-weight-bold
+  @extend .text-white, .fw-bold
   background: #4c607a
 
 div.bid-bid
@@ -129,4 +111,4 @@ span.red-suit
 
 // Tables for hands
 .hand-tab
-  @extend .mt-3, .ml-auto, .mr-auto
+  @extend .mt-3, .ms-auto, .me-auto
