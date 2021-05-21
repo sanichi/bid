@@ -3,7 +3,7 @@
     [:hand,     t("problem.hand"),     :text, maxlength: Problem::MAX_HAND],
     [:bids,     t("problem.bids"),     :text],
     [:vul,      t("problem.vul"),      :select, menu: problem_vul_menu(problem.vul)],
-    [:category, t("problem.category"), :text, maxlength: Problem::MAX_CATEGORY],
+    [:category, t("problem.category"), :list, maxlength: Problem::MAX_CATEGORY, data: problem_category_data],
     [:note,     t("problem.note"),     :area, rows: 20],
   ]
 = render "utils/crud/form", object: problem, index: problems_path, inputs: inputs, title: title, center: center(xl: 8, lg: 10)
