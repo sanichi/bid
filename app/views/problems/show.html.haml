@@ -21,22 +21,25 @@
         = succeed(":") do
           = t("problem.short.vul")
         = problem_vulnerability(@problem.vul)
-    .div{class: center(xl: 4, lg: 6, md: 8, sm: 10)}
-      .row
-        - bdng.bidders.each_with_index do |b, i|
-          .bid-div.bid-hdr{class: i % 4 == 3 ? 'border-right' : ''}= b
-        - bids.each_with_index do |b, i|
-          .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b)
-        - (bids.length..(bids.length/4.0).ceil * 4 - 1).to_a.each do |i|
-          .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}
-      %table.hand-tab
-        %tbody
-          - hand.each_pair do |suit, cards|
-            %tr
-              %td= t("bids.#{suit}")
-              %td
-                - cards.each do |card|
-                  = card
+    .row
+      .col
+      %div{class: centre(8, 7, 6, 5, 4, 3)}
+        .row
+          - bdng.bidders.each_with_index do |b, i|
+            .bid-div.bid-hdr{class: i % 4 == 3 ? 'border-right' : ''}= b
+          - bids.each_with_index do |b, i|
+            .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b)
+          - (bids.length..(bids.length/4.0).ceil * 4 - 1).to_a.each do |i|
+            .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}
+      .col
+    %table.hand-tab
+      %tbody
+        - hand.each_pair do |suit, cards|
+          %tr
+            %td= t("bids.#{suit}")
+            %td
+              - cards.each do |card|
+                = card
   .body.border-top
     .note= @problem.html
   .footer

@@ -25,6 +25,25 @@ module ApplicationHelper
     klass.any? ? klass.join(" ") : "col-12"
   end
 
+  def centre(*args)
+    nums = args.map(&:to_i).select{ |n| n > 0 && n < 12 }.sort.reverse
+    return "col" if nums.empty?
+    nums = nums.first(6) if nums.length > 6
+    nums.unshift(12) while nums.length < 6
+    cols = %w/xs sm md lg xl xxl/
+    0.upto(5).map do |i|
+      if nums[i] < 12
+        if i == 0
+          "col-#{nums[i]}"
+        else
+          "col-#{cols[i]}-#{nums[i]}"
+        end
+      else
+        nil
+      end
+    end.compact.join(" ")
+  end
+
   def home_page
     controller_name == "pages" && action_name == "home"
   end
