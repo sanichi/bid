@@ -44,10 +44,6 @@ module ApplicationHelper
     end.compact.join(" ")
   end
 
-  def home_page
-    controller_name == "pages" && action_name == "home"
-  end
-
   def col(s)
     case s
     when true
@@ -57,5 +53,9 @@ module ApplicationHelper
     else
       s.to_s.gsub(/(\A| )((?:sm|md|lg|xl|xxl)-)?(\d)/){"#{$1}col-#{$2}#{$3}"}
     end
+  end
+
+  def home_page
+    controller_name == "pages" && action_name == "home"
   end
 end
