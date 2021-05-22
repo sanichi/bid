@@ -17,7 +17,7 @@ class Hand
     "2" => 2,
   }
 
-  SHAPE = /\A\d+-\d+-\d+-\d+\z/
+  SHAPE = /\A\d{4,5}\z/
 
   EXAMPLES = [
     "84|KQJT9543|8|85",
@@ -64,7 +64,7 @@ class Hand
   end
 
   def shape
-    @cards.map(&:length).sort.reverse.join("-")
+    @cards.map(&:length).sort.reverse.join("")
   end
 
   def points

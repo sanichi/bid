@@ -91,9 +91,9 @@ describe Hand do
 
     it "shape" do
       {
-        "5-4-3-1"  => ["4|T9653|762|QJ93", "AJ972|A842|Q83|5"],
-        "13-0-0-0" => ["||AKQJT98765432|", "|AKQJT98765432||"],
-        "4-4-4-1" => ["T954|AK43|7|T765", "A|A652|AJT5|KQ32"],
+        "5431"  => ["4|T9653|762|QJ93", "AJ972|A842|Q83|5"],
+        "13000" => ["||AKQJT98765432|", "|AKQJT98765432||"],
+        "4441"  => ["T954|AK43|7|T765", "A|A652|AJT5|KQ32"],
       }.each_pair do |shape,strs|
         strs.each do |str|
           h = Hand.new(str)
