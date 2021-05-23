@@ -1,8 +1,8 @@
 :ruby
   set_meta_tags title: t("note.notes")
   inputs = [
-    [:query,   t("search"),      :text,   "offset-sm-2 sm-5", size: 16, placeholder: t("search"), autofocus: true],
-    [:user_id, t("note.author"), :select, "sm-3",             menu: author_menu(params[:user_id])],
+    [:query,   t("search"),      :text,   "ms-2 sm-5", size: 16, placeholder: t("search"), autofocus: true],
+    [:user_id, t("note.author"), :select, "sm-3",      menu: author_menu(params[:user_id])],
   ]
 
 %section
