@@ -11,7 +11,7 @@ describe PagesController do
 
     context "home" do
       it "show" do
-        expect(page).to have_title t("note.notes")
+        expect(page).to have_title t("problem.title")
       end
     end
 

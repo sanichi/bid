@@ -39,6 +39,7 @@ module ProblemHelper
 
   def problem_order_menu(selected)
     opts = [
+      [t("order"),                    ""],
       [t("hand.points"),        "points"],
       [t("hand.shape"),          "shape"],
       [t("problem.category"), "category"],
