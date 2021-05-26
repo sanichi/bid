@@ -18,6 +18,7 @@
             %ul.dropdown-menu
               %li= link_to t("user.users"), users_path
               %li= link_to t("pages.env.title"), env_path
+              %li= link_to t("pages.links.title"), links_path
       %ul.ms-auto
         - unless controller_name == "sessions"
           - if current_user.guest?

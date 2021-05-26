@@ -8,3 +8,8 @@ en:
       description: Spaced repetition for learning a particular bridge bidding system
       keywords: bridge, bidding, spaced, repetition
       title: Home
+    links:
+      title: Links
+      text: Text
+      sources: Sources
+      target: Target

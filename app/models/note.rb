@@ -4,16 +4,18 @@ class Note < ApplicationRecord
   include Pageable
   include Remarkable
 
-  MAX_TITLE = 50
+  TITLE_MAX = 50
+  TITLE_FORMAT = /\A[\w\d &-‘]+\z/
 
   belongs_to :user, inverse_of: :notes
 
   before_validation :normalize_attributes
 
   validates :markdown, presence: true
-  validates :title, presence: true, length: { maximum: MAX_TITLE }
+  validates :title, presence: true, length: { maximum: TITLE_MAX }, format: { with: TITLE_FORMAT }
 
-  default_scope { order(created_at: :desc) }
+  default_scope            { order(created_at: :desc) }
+  scope :targets, ->(text) { where("title ILIKE ?", "%#{text}%") }
 
   def self.search(matches, params, path, opt={})
     matches = matches.includes(:user)

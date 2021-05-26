@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "pages#home"
 
-  %w{env help home}.each { |p| get p => "pages##{p}" }
+  %w{env help home links}.each { |p| get p => "pages##{p}" }
   get "sign_in" => "sessions#new"
 
   resources :notes

@@ -1,0 +1,26 @@
+- set_meta_tags title: t("pages.links.title")
+
+%section
+  .header
+    %h3.d-inline= t("pages.links.title")
+  .body
+    %table{class: "table table-bordered table-sm"}
+      %thead
+        %tr
+          %th= t("pages.links.text")
+          %th= t("pages.links.sources")
+          %th= t("pages.links.target")
+      %tbody
+        - @links.keys.sort.each do |text|
+          %tr
+            %td= text
+            %td
+              - sources = @links[text].sources
+              - sources.sort_by{ |s| [s.class.to_s, s.id] }.each_with_index do |source, i|
+                = succeed(i + 1 < sources.length ? "," : "") do
+                  = link_to source.id, source
+            %td
+              - targets = @links[text].targets
+              - @links[text].targets.sort_by{ |s| s.id }.each_with_index do |target, i|
+                = succeed(i + 1 < targets.length ? "," : "") do
+                  = link_to target.id, target
