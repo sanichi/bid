@@ -1,11 +1,11 @@
 :ruby
   set_meta_tags title: t("problem.title")
-  lo = Layout.new({
+  lo = Layout.new(
     xl: [1,1,2,2,1,1,2],
     lg: [[1,1,2,2],[4,2,2]],
     sm: [[2,2],[4,4],[4,3,2]],
     xs: [[2,2],[4,4],[4,4],[4]],
-  }).to_a
+  ).to_a
   inputs = [
     [:min,      t("symbol.ge"),        :text,   lo[0], size: 2, placeholder: t("symbol.ge")],
     [:max,      t("symbol.le"),        :text,   lo[1], size: 2, placeholder: t("symbol.le")],
