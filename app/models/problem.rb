@@ -45,8 +45,10 @@ class Problem < ApplicationRecord
       matches = matches.order(shape: :asc, points: :desc)
     when "category"
       matches = matches.order(category: :asc, points: :desc)
-    else
+    when "points"
       matches = matches.order(points: :desc, shape: :asc)
+    else
+      matches = matches.order(created_at: :desc)
     end
     paginate(matches, params, path, opt)
   end
