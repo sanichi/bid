@@ -14,7 +14,7 @@
             %body
               %tr
                 %td= t("review.summary.due")
-                %th.text-center= link_to @new, select_problems_path(type: "due")
+                %th.text-center= link_to @due, select_problems_path(type: "due")
               %tr
                 %td= t("review.summary.new")
                 %th.text-center= link_to @new, select_problems_path(type: "new")
