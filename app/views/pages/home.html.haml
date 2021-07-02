@@ -19,6 +19,9 @@
                 %td= t("review.summary.new")
                 %th.text-center= link_to @new, select_problems_path(type: "new")
               %tr
+                %td= t("review.summary.day")
+                %th.text-center= link_to @day, select_problems_path(type: "day")
+              %tr
                 %td= t("review.summary.total")
                 %th.text-center= @total
               %tr
