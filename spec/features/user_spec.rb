@@ -42,7 +42,7 @@ describe User do
       fill_in t("user.password"), with: data.password
       click_button t("session.sign_in")
 
-      expect(page).to have_title t("note.notes")
+      expect(page).to have_title data.name
     end
 
     it "edit user" do

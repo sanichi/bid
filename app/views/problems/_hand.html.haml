@@ -1,0 +1,10 @@
+- hand = Hand.new(problem.hand).hand
+
+%table.hand-tab
+  %tbody
+    - hand.each_pair do |suit, cards|
+      %tr
+        %td= t("bids.#{suit}")
+        %td
+          - cards.each do |card|
+            = card

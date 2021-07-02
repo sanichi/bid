@@ -1,17 +1,4 @@
 module ProblemHelper
-  PER_PAGE = [5, 10, 20]
-  DEF_PAGE = PER_PAGE[1]
-
-  def problems_per_page(per_page)
-    PER_PAGE.include?(per_page.to_i) ? per_page.to_i : DEF_PAGE
-  end
-
-  def problems_per_page_menu(selected)
-    selected = DEF_PAGE unless PER_PAGE.include?(selected.to_i)
-    opts = PER_PAGE.map{ |pp| [pp.to_s, pp] }
-    options_for_select(opts, selected)
-  end
-
   def problem_vul_menu(selected)
     opts = Problem::VULS.map{ |v| [t("problem.vuls.#{v}"), v] }
     options_for_select(opts, selected)
@@ -78,16 +65,22 @@ module ProblemHelper
     raw parts.join(t("pagination.sep"))
   end
 
-  def show_bid(bid)
-    case bid
-    when /\A(P|X|XX)\Z/
-      t("bids.#{$1}")
-    when /\A(\d)([CSN])\z/
-      $1 + t("bids.#{$2}")
-    when /\A(\d)([DH])\z/
-      raw('%s<span class="red-suit">%s</span>' % [$1, t("bids.#{$2}")])
+  def show_bid(bid, hide)
+    text =
+      case bid
+      when /\A(P|X|XX)\Z/
+        t("bids.#{$1}")
+      when /\A(\d)([CSN])\z/
+        $1 + t("bids.#{$2}")
+      when /\A(\d)([DH])\z/
+        '%s<span class="red-suit">%s</span>' % [$1, t("bids.#{$2}")]
+      else
+        bid
+      end
+    if hide
+      raw('<span id="modesty">%s</span><span id="answer">%s</span>' % [t("symbol.hide"), text])
     else
-      bid
+      raw(text)
     end
   end
 end

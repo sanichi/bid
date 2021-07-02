@@ -1,36 +1,33 @@
 :ruby
-  set_meta_tags title: t("problem.title")
+  set_meta_tags title: t("review.title")
   lo = Layout.new(
     xl: [1,1,2,2,2,1],
-    lg: [[1,1,2,2],[4,2]],
-    xs: [[2,2],[4,4],[4,4]],
+    lg: [[1,1,2,2],[2,2]],
+    xs: [[2,2],[4,4],[3,3]],
   ).to_a
   inputs = [
     [:min,      t("symbol.ge"),        :text,   lo[0], size: 2, placeholder: t("symbol.ge")],
     [:max,      t("symbol.le"),        :text,   lo[1], size: 2, placeholder: t("symbol.le")],
     [:shape,    t("hand.shape"),       :select, lo[2], menu: problem_shape_menu(params[:shape])],
     [:category, t("problem.category"), :select, lo[3], menu: problem_category_menu(params[:category])],
-    [:query,    t("search"),           :text,   lo[4], size: 8, placeholder: t("problem.note")],
-    [:order,    t("order"),            :select, lo[5], menu: problem_order_menu(params[:order])],
+    [:type,     t("review.type"),        :select, lo[4], menu: test_order_menu(params[:type])],
+    [:per_page, t("per_page"),         :select, lo[5], menu: tests_per_page_menu(params[:per_page])],
   ]
 
 %section
   .header{class: "#{can?(:create, Problem) ? '' : 'text-center'}"}
-    %h3.d-inline= t("problem.title")
+    %h3.d-inline= t("review.title")
   .body
-    = render "utils/search/form", index: problems_path, inputs: inputs
+    = render "utils/search/form", index: select_problems_path, inputs: inputs
     .row
       %div{class: center(xl: 6, lg: 8, md: 10, sm: 12)}
         %table.mt-4{class: "table table-bordered table-sm"}
           %thead
             %tr
-              %th.text-center= "#"
               %th.text-center= t("hand.points")
               %th.text-center= t("hand.shape")
-              %th= t("problem.category")
+              %th.text-center= t("problem.category")
           %tbody#results
-            = render "results", problems: @problems
+            = render "selections", problems: @problems
   .footer
-    - if can?(:create, Problem)
-      = link_to t("problem.new"), new_problem_path, class: "btn btn-primary btn-sm"
-    = link_to t("reset"), problems_path, class: "btn btn-success btn-sm"
+    = link_to t("review.review"), review_problems_path, class: "btn btn-success btn-sm"

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get "sign_in" => "sessions#new"
 
   resources :notes
-  resources :problems
+  resources :problems do
+    get :review, on: :collection
+    get :select, on: :collection
+    get :retire, on: :collection
+  end
   resources :users
 
   resource :session, only: [:new, :create, :destroy]

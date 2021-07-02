@@ -1,2 +1,30 @@
 - title = current_user.guest? ? t("pages.home.title") : current_user.name
 - set_meta_tags title: title, description: t("pages.home.description"), keywords: t("pages.home.keywords")
+
+- if @name
+  %section
+    .header
+      %h3.d-inline= @name
+    .body
+      %h3.text-center= t("review.summary.summary")
+      .row
+        .col
+        %div{class: centre(10,9,8,7,6,5)}
+          %table.table.table-bordered
+            %body
+              %tr
+                %td= t("review.summary.due")
+                %th.text-center= link_to @new, select_problems_path(type: "due")
+              %tr
+                %td= t("review.summary.new")
+                %th.text-center= link_to @new, select_problems_path(type: "new")
+              %tr
+                %td= t("review.summary.total")
+                %th.text-center= @total
+              %tr
+                %td= t("review.summary.done")
+                %th.text-center= @done
+              %tr
+                %td= t("review.summary.attempts")
+                %th.text-center= @attempts
+        .col

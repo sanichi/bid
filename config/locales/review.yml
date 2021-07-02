@@ -1,0 +1,36 @@
+en:
+  review:
+    retire: Quit
+    reveal: Show Answer
+    review: Review
+    title: Reviews
+    type: Type
+    btn:
+      class:
+        - danger
+        - warning
+        - secondary
+        - dark
+        - primary
+        - success
+      text:
+        - Bad
+        - Poor
+        - Fair
+        - OK
+        - Good
+        - Great
+    summary:
+      attempts: Total Reviews
+      day: Due Within a Day
+      done: Reviewed Problems
+      due: Due Now
+      new: Not Yet Attempted
+      summary: Review Status
+      total: Total Problems
+    types:
+      day: Next Day
+      due: Due
+      days: Next 3 Days
+      new: New
+      week: Next Week

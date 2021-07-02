@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_secure_password
   has_many :notes, dependent: :destroy, inverse_of: :user
+  has_many :reviews, dependent: :destroy
 
   before_validation :normalize_attributes
 

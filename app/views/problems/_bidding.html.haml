@@ -1,0 +1,25 @@
+:ruby
+  defined?(hide) || hide = false
+  bdng = Bids.new(problem.bids)
+  bids = bdng.bids
+
+%p.text-center
+  %small
+    = succeed(":") do
+      = t("hand.dealer")
+    = succeed(",") do
+      = bdng.dealer
+    = succeed(":") do
+      = t("problem.short.vul")
+    = problem_vulnerability(problem.vul)
+.row
+  .col
+  %div{class: centre(8, 7, 6, 5, 4, 3)}
+    .row
+      - bdng.bidders.each_with_index do |b, i|
+        .bid-div.bid-hdr{class: i % 4 == 3 ? 'border-right' : ''}= b
+      - bids.each_with_index do |b, i|
+        .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}= show_bid(b, hide && i + 1 == bids.length)
+      - (bids.length..(bids.length/4.0).ceil * 4 - 1).to_a.each do |i|
+        .bid-div.bid-bid{class: i % 4 == 3 ? 'border-right' : ''}
+  .col

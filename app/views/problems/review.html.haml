@@ -1,0 +1,20 @@
+- set_meta_tags title: t("review.review")
+
+- content_for :javascript do
+  = render partial: "review", formats: :js, locals: { pid: @problem.id }
+
+%section
+  .header
+    %h3= @title
+  .body
+    = render "bidding", problem: @problem, hide: true
+    = render "hand", problem: @problem
+    .text-center.mt-3
+      %button.btn.btn-sm.btn-success#show= t("review.reveal")
+      - (0..5).each do |q|
+        %button.btn.btn-sm.report{class: "btn-#{t("review.btn.class")[q]}", "data-quality" => q}
+          = t("review.btn.text")[q]
+  .body.border-top#note
+    .note= @problem.html
+  .footer
+    = link_to t("review.retire"), retire_problems_path, class: "btn btn-sm btn-danger"

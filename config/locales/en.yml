@@ -20,5 +20,6 @@ en:
   symbol:
     cross: ✘
     ge: ≥
+    hide: '?'
     le: ≤
     tick: ✔︎

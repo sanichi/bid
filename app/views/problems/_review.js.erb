@@ -1,0 +1,18 @@
+$(function() {
+  $('#answer').hide();
+  $('#note').hide();
+  $('button.report').hide();
+
+  $('#show').click(function() {
+    $('#show').hide();
+    $('#modesty').hide();
+    $('#answer').show();
+    $('#note').show();
+    $('button.report').show();
+  });
+
+  $('button.report').click(function() {
+    var quality = $(this).attr('data-quality');
+    window.location.href = '/problems/review?pid=' + <%= pid %> + '&quality=' + quality;
+  });
+});
