@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     unless current_user.guest?
       @name = current_user.name
       done = Review.where(user_id: current_user.id)
-      @total = Review.count
+      @total = Problem.count
       @done = done.count
       @new = @total - @done
       @due = done.where("due <= ?", Time.now).count
