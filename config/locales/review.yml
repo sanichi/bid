@@ -22,7 +22,7 @@ en:
         - Great
     summary:
       attempts: Total Reviews
-      day: Due Within a Day
+      day: Due in Next 24h
       done: Reviewed Problems
       due: Due Now
       new: Not Yet Attempted
