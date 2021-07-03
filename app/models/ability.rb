@@ -9,7 +9,7 @@ class Ability
     unless user.guest?
       can :help, :page
       can :read, Note
-      can [:select, :review, :quit], Problem
+      can [:select, :retire, :review], Problem
     end
 
     can :home, :page

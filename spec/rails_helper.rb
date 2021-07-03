@@ -90,3 +90,9 @@ def expect_forbidden(page)
   expect_error(page, "not authorized")
   expect(page).to have_title t("session.sign_in")
 end
+
+def expect_row(page, label, text, lc: "td", tc: "th")
+  within :xpath, "//table/tbody/tr[#{lc}[.='#{label.to_s}']]" do
+    expect(page).to have_css(tc, text: text.to_s)
+  end
+end

@@ -92,24 +92,13 @@ describe Review do
     expect(page).to have_title t("review.title")
 
     find(:xpath, "//a/img[@alt='logo']/..").click
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.attempts")}']]" do
-      expect(page).to have_css("th", text: "7")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.day")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.done")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.due")}']]" do
-      expect(page).to have_css("th", text: "0")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.new")}']]" do
-      expect(page).to have_css("th", text: "0")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.total")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
+    expect(page).to have_title user1.name
+    expect_row page, t("review.summary.attempts"), 7
+    expect_row page, t("review.summary.day"), 4
+    expect_row page, t("review.summary.done"), 4
+    expect_row page, t("review.summary.due"), 0
+    expect_row page, t("review.summary.new"), 0
+    expect_row page, t("review.summary.total"), 4
 
     logout
     login user2
@@ -149,35 +138,13 @@ describe Review do
     expect(review.interval).to eq 1
     expect(page).to have_css("h3", text: "4 of 4 Reviews")
 
-    click_button t("review.reveal")
-    click_button t("review.btn.text")[5]
-    expect(Review.count).to eq 8
-    review = problem4.reviews.find_by(user_id: user2.id)
-    expect(review).to_not be_nil
-    expect(review.attempts).to eq 1
-    expect(review.repetitions).to eq 1
-    expect(review.interval).to eq 1
-    expect(page).to have_title t("review.title")
-
-    find(:xpath, "//a/img[@alt='logo']/..").click
+    click_link t("review.retire")
     expect(page).to have_title user2.name
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.attempts")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.day")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.done")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.due")}']]" do
-      expect(page).to have_css("th", text: "0")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.new")}']]" do
-      expect(page).to have_css("th", text: "0")
-    end
-    within :xpath, "//table/tbody/tr[td[.='#{t("review.summary.total")}']]" do
-      expect(page).to have_css("th", text: "4")
-    end
+    expect_row page, t("review.summary.attempts"), 3
+    expect_row page, t("review.summary.day"), 3
+    expect_row page, t("review.summary.done"), 3
+    expect_row page, t("review.summary.due"), 0
+    expect_row page, t("review.summary.new"), 1
+    expect_row page, t("review.summary.total"), 4
   end
 end
