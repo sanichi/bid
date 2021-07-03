@@ -43,7 +43,7 @@ class Problem < ApplicationRecord
     matches = shape_min_max_cat(matches, params)
     if params[:type] == "new"
       pids = Review.where(user_id: params[:user_id]).pluck(:problem_id)
-      matches = matches.where.not(id: pids)
+      matches = matches.where.not(id: pids).order(:id)
     else
       matches = matches.joins(:reviews).where("reviews.user_id = ?", params[:user_id])
       case params[:type]

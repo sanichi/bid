@@ -74,6 +74,10 @@ def login(user)
   click_button t("session.sign_in")
 end
 
+def logout
+  click_link t("session.sign_out")
+end
+
 def t(key, **opts)
   I18n.t(key, **opts)
 end
