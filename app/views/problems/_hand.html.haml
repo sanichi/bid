@@ -4,7 +4,7 @@
   %tbody
     - hand.each_pair do |suit, cards|
       %tr
-        %td= t("bids.#{suit}")
+        %td.pe-1= show_suit(suit)
         %td
           - cards.each do |card|
             = card

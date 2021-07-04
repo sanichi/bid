@@ -83,4 +83,10 @@ module ProblemHelper
       raw(text)
     end
   end
+
+  def show_suit(suit)
+    sym = t("bids.#{suit}")
+    return sym if suit == "C" || suit == "S"
+    raw "<span class=\"red-suit\">#{sym}</span>"
+  end
 end
