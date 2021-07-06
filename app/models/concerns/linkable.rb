@@ -19,7 +19,8 @@ module Linkable
         if title.match(Note::TITLE_FORMAT)
           notes = Note.targets(title)
           if notes.count == 1
-            "[#{text}](/notes/#{notes.first.id})"
+            # "[#{text}](/notes/#{notes.first.id})"
+            '<a href="%s" target="note">%s</a>' % ["/notes/#{notes.first.id})", text]
           else
             match
           end
