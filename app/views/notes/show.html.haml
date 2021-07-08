@@ -3,8 +3,7 @@
 %section
   .header
     %h3.d-inline= @note.title
-  .body
-    .note= @note.html
+  .body= @note.html
   .footer
     - if can?(:edit, @note)
       = link_to t("edit"), edit_note_path(@note), class: "btn btn-primary btn-sm"
