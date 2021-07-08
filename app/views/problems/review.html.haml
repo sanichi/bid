@@ -19,6 +19,8 @@
     .note= @problem.html
   .footer
     = link_to t("review.retire"), retire_problems_path, class: "btn btn-sm btn-danger"
+    - if can?(:edit, @problem)
+      = link_to t("edit"), edit_problem_path(@problem), class: "btn btn-primary btn-sm", target: "edit"
 
 .modal#note-modal.fade{tabindex: "-1"}
   .modal-dialog.modal-dialog-scrollable
