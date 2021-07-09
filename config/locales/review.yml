@@ -9,8 +9,8 @@ en:
       class:
         - danger
         - warning
-        - secondary
         - dark
+        - secondary
         - primary
         - success
       text:

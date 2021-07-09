@@ -10,8 +10,8 @@
     [:max,      t("symbol.le"),        :text,   lo[1], size: 2, placeholder: t("symbol.le")],
     [:shape,    t("hand.shape"),       :select, lo[2], menu: problem_shape_menu(params[:shape])],
     [:category, t("problem.category"), :select, lo[3], menu: problem_category_menu(params[:category])],
-    [:type,     t("review.type"),      :select, lo[4], menu: test_order_menu(params[:type])],
-    [:per_page, t("per_page"),         :select, lo[5], menu: tests_per_page_menu(params[:per_page])],
+    [:type,     t("review.type"),      :select, lo[4], menu: review_order_menu(params[:type])],
+    [:per_page, t("per_page"),         :select, lo[5], menu: reviews_per_page_menu(params[:per_page])],
   ]
 
 %section

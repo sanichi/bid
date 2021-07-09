@@ -8,17 +8,21 @@ class ProblemsController < ApplicationController
   end
 
   def select
-    per_page = helpers.tests_per_page(params[:per_page])
+    per_page = helpers.reviews_per_page(params[:per_page])
     params[:user_id] = current_user.id
     @problems = Problem.select(@problems, params, select_problems_path, per_page: per_page)
     remember_reviews(@problems)
   end
 
   def review
-    update_test(params[:pid].to_i, params[:quality].to_i)
+    update_review(params[:pid].to_i, params[:quality].to_i)
     @title = reviews_title
     @problem = get_next_review
-    redirect_to select_problems_path unless @problem
+    if @problem
+      @review = Review.find_by(problem_id: @problem.id, user_id: current_user.id) || Review.new
+    else
+      redirect_to select_problems_path
+    end
   end
 
   def retire
@@ -88,14 +92,14 @@ class ProblemsController < ApplicationController
     problem
   end
 
-  def update_test(pid, q)
+  def update_review(pid, q)
     pids, rids, i = okay
     return unless i
     return unless pids.include?(pid)
     return unless Review::QUALITY.include?(q)
-    test = Review.find_or_create_by(problem_id: pid, user_id: current_user.id)
-    test.step(q)
-    test.save!
+    review = Review.find_or_create_by(problem_id: pid, user_id: current_user.id)
+    review.step(q)
+    review.save!
     if q < 3
       session[:repeats].push(pid) unless rids.include?(pid)
     else

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Review do
-  let(:user1)  { create(:user, admin: false) }
-  let(:user2)  { create(:user, admin: false) }
+  let(:user1) { create(:user, admin: false) }
+  let(:user2) { create(:user, admin: false) }
 
   let!(:problem1) { create(:problem) }
   let!(:problem2) { create(:problem) }
@@ -22,7 +22,7 @@ describe Review do
     expect(page).to have_css("h3", text: "1 of 4 Reviews")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[4]
+    page.find('#btn-q-4').click # click_button t("review.btn.text")[4]
     expect(Review.count).to eq 1
     review = problem1.reviews.find_by(user_id: user1.id)
     expect(review).to_not be_nil
@@ -42,7 +42,7 @@ describe Review do
     expect(page).to have_css("h3", text: "3 of 4 Reviews")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[5]
+    page.find('#btn-q-5').click # click_button t("review.btn.text")[5]
     expect(Review.count).to eq 3
     review = problem3.reviews.find_by(user_id: user1.id)
     expect(review).to_not be_nil
@@ -52,7 +52,7 @@ describe Review do
     expect(page).to have_css("h3", text: "4 of 4 Reviews")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[0]
+    page.find('#btn-q-0').click # click_button t("review.btn.text")[0]
     expect(Review.count).to eq 4
     review = problem4.reviews.find_by(user_id: user1.id)
     expect(review).to_not be_nil
@@ -62,7 +62,7 @@ describe Review do
     expect(page).to have_css("h3", text: "2 Repeats")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[0]
+    page.find('#btn-q-0').click # click_button t("review.btn.text")[0]
     expect(Review.count).to eq 4
     review = problem2.reviews.find_by(user_id: user1.id)
     expect(review).to_not be_nil
@@ -72,7 +72,7 @@ describe Review do
     expect(page).to have_css("h3", text: "2 Repeats")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[3]
+    page.find('#btn-q-3').click # click_button t("review.btn.text")[3]
     expect(Review.count).to eq 4
     review = problem4.reviews.find_by(user_id: user1.id)
     expect(review).to_not be_nil
@@ -82,7 +82,7 @@ describe Review do
     expect(page).to have_css("h3", text: "1 Repeat")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[3]
+    page.find('#btn-q-3').click # click_button t("review.btn.text")[3]
     expect(Review.count).to eq 4
     review = problem2.reviews.find_by(user_id: user1.id)
     expect(review).to_not be_nil
@@ -109,7 +109,7 @@ describe Review do
     expect(page).to have_css("h3", text: "1 of 4 Reviews")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[5]
+    page.find('#btn-q-5').click # click_button t("review.btn.text")[5]
     expect(Review.count).to eq 5
     review = problem1.reviews.find_by(user_id: user2.id)
     expect(review).to_not be_nil
@@ -119,7 +119,7 @@ describe Review do
     expect(page).to have_css("h3", text: "2 of 4 Reviews")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[5]
+    page.find('#btn-q-5').click # click_button t("review.btn.text")[5]
     expect(Review.count).to eq 6
     review = problem2.reviews.find_by(user_id: user2.id)
     expect(review).to_not be_nil
@@ -129,7 +129,7 @@ describe Review do
     expect(page).to have_css("h3", text: "3 of 4 Reviews")
 
     click_button t("review.reveal")
-    click_button t("review.btn.text")[5]
+    page.find('#btn-q-5').click # click_button t("review.btn.text")[5]
     expect(Review.count).to eq 7
     review = problem3.reviews.find_by(user_id: user2.id)
     expect(review).to_not be_nil

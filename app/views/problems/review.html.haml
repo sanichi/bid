@@ -13,8 +13,11 @@
     .text-center.mt-3
       %button.btn.btn-sm.btn-success#show= t("review.reveal")
       - (0..5).each do |q|
-        %button.btn.btn-sm.report{class: "btn-#{t("review.btn.class")[q]}", "data-quality" => q}
-          = t("review.btn.text")[q]
+        - unless q == 1 || q == 2
+          %button.btn.btn-sm.report{class: "btn-#{t("review.btn.class")[q]}", id: "btn-q-#{q}", "data-quality" => q}
+            = t("review.btn.text")[q]
+            - if q >= 3
+              = review_interval(@review.new_interval(q))
   .body.border-top#note
     .note= @problem.html
   .footer
