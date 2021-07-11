@@ -84,6 +84,7 @@ class Hand
   def parse(str)
     @cards = []
     prev = nil
+    str.gsub!(/10/, "T")
     str.each_char do |c|
       if CARD.has_key?(c)
         @cards.push(Array.new) if prev.nil? || prev <= CARD[c]
