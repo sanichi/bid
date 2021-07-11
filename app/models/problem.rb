@@ -6,7 +6,6 @@ class Problem < ApplicationRecord
 
   CAT_FORMAT = /\A[\w\d &‘-]+\z/
   MAX_CATEGORY = 50
-  MAX_HAND = 16
   VULS = %w/na both non none vul/
 
   belongs_to :user

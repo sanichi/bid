@@ -1,6 +1,6 @@
 :ruby
   inputs = [
-    [:hand,     t("problem.hand"),     :text, maxlength: Problem::MAX_HAND],
+    [:hand,     t("problem.hand"),     :text],
     [:bids,     t("problem.bids"),     :text],
     [:vul,      t("problem.vul"),      :select, menu: problem_vul_menu(problem.vul)],
     [:category, t("problem.category"), :list, maxlength: Problem::MAX_CATEGORY, data: problem_category_data],
