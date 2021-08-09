@@ -19,9 +19,16 @@ class Note < ApplicationRecord
 
   def self.search(matches, params, path, opt={})
     matches = matches.includes(:user)
-    if sql = cross_constraint(params[:query], %w{title markdown})
-      matches = matches.where(sql)
-    end
+    sql =
+      case params[:query]
+      when /\At:(.+)/
+        cross_constraint($1, %w{title})
+      when /\A[mn]:(.+)/
+        cross_constraint($1, %w{markdown})
+      else
+        cross_constraint(params[:query], %w{title markdown})
+      end
+    matches = matches.where(sql) if sql
     if (user_id = params[:user_id].to_i) > 0
       matches = matches.where(user_id: user_id)
     end
