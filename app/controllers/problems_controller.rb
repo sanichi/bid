@@ -3,7 +3,7 @@ class ProblemsController < ApplicationController
   authorize_resource only: ["review", "retire"]
 
   def index
-    @problems = Problem.search(@problems, params, problems_path, per_page: 20)
+    @problems = Problem.search(@problems, params, problems_path)
     remember_last_results(@problems)
   end
 
