@@ -35,8 +35,8 @@ class Note < ApplicationRecord
     paginate(matches, params, path, opt)
   end
 
-  def html
-    to_html(link_notes(markdown))
+  def html(modal: false)
+    to_html(link_notes(markdown, modal: modal))
   end
 
   private

@@ -11,7 +11,7 @@ module Linkable
   SourcesTargets = Struct.new(:sources, :targets)
 
   included do
-    def link_notes(text)
+    def link_notes(text, modal: false)
       return text unless text.present?
       text.gsub(LINK) do |match|
         title = $2
@@ -19,7 +19,7 @@ module Linkable
         if title.match(Note::TITLE_FORMAT)
           notes = Note.targets(title)
           if notes.count == 1
-            '<a href="%s" class="note-link">%s</a>' % ["/notes/#{notes.first.id}", text]
+            '<a href="%s%s" class="note-link">%s</a>' % ["/notes/#{notes.first.id}", modal ? '/modal' : '', text]
           else
             match
           end

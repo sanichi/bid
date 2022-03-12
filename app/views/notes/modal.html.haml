@@ -1,0 +1,5 @@
+.modal-header
+  %h4.modal-title#note-modal-title= @note.title
+.modal-body#note-modal-body= @note.html(modal: true)
+.modal-footer
+  %button.button.btn.btn-secondary{"data-bs-dismiss" => "modal"}= t("close")

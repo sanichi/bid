@@ -31,6 +31,10 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
+  def modal
+    render :modal, layout: false
+  end
+
   private
 
   def resource_params

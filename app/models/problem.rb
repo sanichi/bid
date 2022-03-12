@@ -60,7 +60,7 @@ class Problem < ApplicationRecord
   end
 
   def html
-    to_html(link_notes(note))
+    to_html(link_notes(note, modal: true))
   end
 
   private

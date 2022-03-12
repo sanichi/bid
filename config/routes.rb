@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   %w{env help home links}.each { |p| get p => "pages##{p}" }
   get "sign_in" => "sessions#new"
 
-  resources :notes
+  resources :notes do
+    get :modal, on: :member
+  end
   resources :problems do
     get :review, on: :collection
     get :select, on: :collection
