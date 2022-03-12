@@ -59,8 +59,8 @@ class Problem < ApplicationRecord
     paginate(matches, params, path, opt)
   end
 
-  def html
-    to_html(link_notes(note, modal: true))
+  def html(modal: false)
+    to_html(link_notes(note, modal: modal))
   end
 
   private
