@@ -12,11 +12,10 @@ function bind_links(old) {
 function show_modal(event, href) {
   event.preventDefault();
   $.ajax(href, {
-    dataType: 'html',
-    success: function (data) {
-      $('#note-modal-content').html(data);
-      bind_links(true);
-    }
+    dataType: 'html'
+  }).done(function (data) {
+    $('#note-modal-content').html(data);
+    bind_links(true);
   });
   note_modal.show();
 }
