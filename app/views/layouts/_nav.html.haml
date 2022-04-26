@@ -1,7 +1,7 @@
 %nav
   .container-fluid
     = link_to root_path, class: "navbar-brand" do
-      %img{src: "/logo.png", width: "30", height: "30", alt: "logo", loading: "lazy"}
+      = image_tag "logo.png", width: 30, height: 30, alt: "logo"
     %button{type: "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#navbar"}
       %span
     #navbar.collapse.navbar-collapse
