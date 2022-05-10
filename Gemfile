@@ -12,6 +12,7 @@ gem 'cancancan', '~> 3.0'
 gem 'meta-tags', '~> 2.12'
 gem 'redcarpet', '~> 3.5'
 gem 'sprockets-rails', '~> 3.4'
+gem 'strscan', '3.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0'
