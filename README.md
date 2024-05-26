@@ -1,19 +1,33 @@
 # README
 
-Templete of minimal Rails app with
+This [website](https://bid.sanichi.me/) is for learning bridge bidding using spaced repitition.
 
-* bootstrap
-* cancancan
-* capistrano
-* capybara
-* factory-bot
-* faker
-* haml
-* jquery
-* meta-tags
-* rbenv
-* rspec
-* passenger
-* postgressql
+To run/test locally:
 
-and other Mark Orr preferences.
+* Install the version of ruby in `.ruby-version`.
+* Run `bin/bundle install`.
+* Overwrite `config/credentials.yml.enc` (which only has `secret_key_base`) with a new `config/master.key`.
+* Make sure you have PostgreSQL running locally.
+* Create the unversioned file `config/database.yml` something like this:
+```
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: blah
+  password: blah
+development:
+  <<: *default
+  database: bid_development
+test:
+  <<: *default
+  database: bid_test
+```
+* Run `bin/rails db:create`.
+* Sync the development database with the production database if you can.
+* If you can't sync then at least create one admin user with `bin/rails c`:
+```
+User.create!(name: "...", email: "...", password: "...", admin: true)
+```
+* Run the app locally on port 3000 with `bin/rails s`.
+* Test by running `bin/rake`.
