@@ -1,2 +1,2 @@
 #!/bin/sh
-sd -d bridge -s nhn $1
+sd -d bid -s nhn $1

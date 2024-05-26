@@ -1,5 +1,5 @@
 server "nihon.sanichi.me", user: "sanichi", roles: %w{web app db}
-set :deploy_to, "/var/www/me.bridge"
+set :deploy_to, "/var/www/me.bid"
 set :rails_env, "production"
 
 set :rbenv_type, :user
