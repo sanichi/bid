@@ -6,6 +6,11 @@ set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 
+# for debugging bundler
+# =====================
+# set :bundle_flags, '--verbose'
+# set :bundle_env_variables, { debug_resolver: 1 }
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
