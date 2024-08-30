@@ -11,6 +11,7 @@ gem 'cancancan', '~> 3.0'
 gem 'meta-tags', '~> 2.12'
 gem 'redcarpet', '~> 3.5'
 gem 'sprockets-rails', '~> 3.4'
+gem 'terser', '~> 1.1'
 
 group :development, :test do
   gem 'rspec-rails', '< 7'
@@ -31,8 +32,4 @@ group :development do
   gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano-passenger', '~> 0.2', require: false
   gem 'listen', '~> 3.2'
-end
-
-group :production do
-  gem 'terser', '~> 1.1'
 end
