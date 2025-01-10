@@ -1,6 +1,6 @@
 - problems.matches.each do |problem|
   %tr
-    %td.text-center= link_to problem.id, problem
+    %td.text-center= link_to problem.id, problem, "data-turbo" => "false"
     %td.text-center= problem.points
     %td.text-center= problem.shape
     %td= problem.category

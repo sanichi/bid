@@ -62,8 +62,8 @@ class ProblemsController < ApplicationController
 
   def remember_last_results(pager)
     session[:last_problem_list] = pager.matches.pluck(:id).join(",")
-    session[:next_problem_page] = pager.before_end?  ? helpers.link_to(t("pagination.next"), pager.next_page, remote: pager.remote) : nil
-    session[:prev_problem_page] = pager.after_start? ? helpers.link_to(t("pagination.prev"), pager.prev_page, remote: pager.remote) : nil
+    session[:next_problem_page] = pager.before_end?  ? helpers.link_to(t("pagination.next"), pager.next_page) : nil
+    session[:prev_problem_page] = pager.after_start? ? helpers.link_to(t("pagination.prev"), pager.prev_page) : nil
   end
 
   def remember_reviews(pager)

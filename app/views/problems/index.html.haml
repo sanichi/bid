@@ -17,19 +17,20 @@
 %section
   .header{class: "#{can?(:create, Problem) ? '' : 'text-center'}"}
     %h3.d-inline= t("problem.title")
-  .body
+  .body{"data-turbo" => "true"}
     = render "utils/search/form", index: problems_path, inputs: inputs
     .row
       %div{class: center(xl: 6, lg: 8, md: 10, sm: 12)}
-        %table.mt-4{class: "table table-bordered table-sm"}
-          %thead
-            %tr
-              %th.text-center= "#"
-              %th.text-center= t("hand.points")
-              %th.text-center= t("hand.shape")
-              %th= t("problem.category")
-          %tbody#results
-            = render "results", problems: @problems
+        %turbo-frame{id: "results", "data-turbo-action" => "advance"}
+          %table.mt-4{class: "table table-bordered table-sm"}
+            %thead
+              %tr
+                %th.text-center= "#"
+                %th.text-center= t("hand.points")
+                %th.text-center= t("hand.shape")
+                %th= t("problem.category")
+            %tbody
+              = render "results", problems: @problems
   .footer
     - if can?(:create, Problem)
       = link_to t("problem.new"), new_problem_path, class: "btn btn-primary btn-sm"

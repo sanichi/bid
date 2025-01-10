@@ -8,18 +8,19 @@
 %section
   .header{class: "#{can?(:create, Note) ? '' : 'text-center'}"}
     %h3.d-inline= t("note.notes")
-  .body
+  .body{"data-turbo" => "true"}
     = render "utils/search/form", index: notes_path, inputs: inputs
     .row
       %div{class: center(xl: 6, lg: 8, md: 10, sm: 12)}
-        %table.mt-4{class: "table table-bordered table-sm"}
-          %thead
-            %tr
-              %th= t("note.title")
-              %th= t("note.author")
-              %th.text-center= t("note.updated")
-          %tbody{id: "results"}
-            = render "results", notes: @notes
+        %turbo-frame{id: "results", "data-turbo-action" => "advance"}
+          %table.mt-4{class: "table table-bordered table-sm"}
+            %thead
+              %tr
+                %th= t("note.title")
+                %th= t("note.author")
+                %th.text-center= t("note.updated")
+            %tbody
+              = render "results", notes: @notes
   - if can?(:create, Note)
     .footer
       = link_to t("note.new"), new_note_path, class: "btn btn-primary btn-sm"

@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @notes = Note.search(@notes, params, notes_path, remote: true, per_page: 10)
+    @notes = Note.search(@notes, params, notes_path, per_page: 10)
   end
 
   def create
