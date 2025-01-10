@@ -1,3 +1,5 @@
+import Rails from "@rails/ujs"
+
 $(function () {
   // Auto-submit on change.
   $('form .auto-submit').change(function () {

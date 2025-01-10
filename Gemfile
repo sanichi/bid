@@ -11,6 +11,7 @@ gem 'cancancan', '~> 3.0'
 gem 'meta-tags', '~> 2.12'
 gem 'redcarpet', '~> 3.5'
 gem 'sprockets-rails', '~> 3.4'
+gem 'importmap-rails', '~> 2.1'
 gem 'terser', '~> 1.1'
 
 # Temporary fix
