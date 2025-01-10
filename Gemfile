@@ -13,6 +13,9 @@ gem 'redcarpet', '~> 3.5'
 gem 'sprockets-rails', '~> 3.4'
 gem 'terser', '~> 1.1'
 
+# Temporary fix
+gem "nokogiri", force_ruby_platform: true
+
 group :development, :test do
   gem 'rspec-rails', '< 8'
   gem 'capybara', '< 4'
