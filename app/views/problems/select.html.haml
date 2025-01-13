@@ -21,7 +21,7 @@
     = render "utils/search/form", index: select_problems_path, inputs: inputs
     .row
       %div{class: center(xl: 6, lg: 8, md: 10, sm: 12)}
-        %turbo-frame{id: "results", "data-turbo-action" => "advance"}
+        = turbo_frame_tag :results, "data-turbo-action" => "advance" do
           %table.mt-4{class: "table table-bordered table-sm"}
             %thead
               %tr
