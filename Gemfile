@@ -13,7 +13,7 @@ gem 'redcarpet', '~> 3.5'
 gem 'sprockets-rails', '~> 3.4'
 gem 'importmap-rails', '~> 2.1'
 gem 'turbo-rails', '~> 2.0'
-gem 'terser', '~> 1.1'
+gem "stimulus-rails", "~> 1.3"
 
 # Temporary fix
 gem "nokogiri", force_ruby_platform: true
@@ -38,3 +38,4 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2', require: false
   gem 'listen', '~> 3.2'
 end
+

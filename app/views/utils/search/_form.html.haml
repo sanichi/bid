@@ -1,7 +1,7 @@
 - defined?(button) || button = nil
 - defined?(frame)  || frame = "results"
 
-= form_tag index, method: :get, "data-turbo-frame" => frame, class: "row g-3" do
+= form_tag index, method: :get, "data-turbo-frame" => frame, "data-controller" => "auto-submit", class: "row g-3" do
   - inputs.each do | param, label, type, cols, options |
     %div{class: col(cols)}
       = label_tag param, label, class: "visually-hidden"
