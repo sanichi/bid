@@ -15,7 +15,10 @@ gem 'importmap-rails', '~> 2.1'
 gem 'turbo-rails', '~> 2.0'
 gem "stimulus-rails", "~> 1.3"
 
-# Temporary fix
+# Temporary fix to silence warnings about gem no longer being standard library
+gem "ostruct", "~> 0.6.1"
+
+# Temporary fix because of glibc version on Alma Linux 8
 gem "nokogiri", force_ruby_platform: true
 
 group :development, :test do
