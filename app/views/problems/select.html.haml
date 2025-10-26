@@ -1,10 +1,6 @@
 :ruby
   set_meta_tags title: t("review.title")
-  lo = Layout.new(
-    xl: [1,1,2,2,2,1],
-    lg: [[1,1,2,2],[2,2]],
-    xs: [[2,2],[4,4],[3,3]],
-  ).to_a
+  lo = Sni::Layout.call(xl: [1,1,2,2,2,1], lg: [[1,1,2,2],[2,2]], xs: [[2,2],[4,4],[3,3]])
   inputs = [
     [:min,      t("symbol.ge"),        :text,   lo[0], size: 2, placeholder: t("symbol.ge")],
     [:max,      t("symbol.le"),        :text,   lo[1], size: 2, placeholder: t("symbol.le")],
