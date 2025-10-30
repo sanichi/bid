@@ -10,55 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_184754) do
-
+ActiveRecord::Schema[8.1].define(version: 2021_06_28_184754) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "notes", force: :cascade do |t|
-    t.string "title"
+    t.datetime "created_at", null: false
     t.text "markdown"
+    t.string "title"
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "problems", force: :cascade do |t|
     t.string "bids"
-    t.string "hand", limit: 16
-    t.string "vul", limit: 4
-    t.text "note"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "shape", limit: 10
-    t.integer "points", limit: 2
     t.string "category", limit: 50
+    t.datetime "created_at", null: false
+    t.string "hand", limit: 16
+    t.text "note"
+    t.integer "points", limit: 2
+    t.string "shape", limit: 10
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "vul", limit: 4
     t.index ["user_id"], name: "index_problems_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "problem_id"
     t.integer "attempts", limit: 2, default: 0
-    t.integer "repetitions", limit: 2, default: 0
-    t.integer "interval", limit: 2, default: 0
+    t.datetime "created_at", null: false
+    t.datetime "due", precision: nil
     t.decimal "factor", precision: 3, scale: 2, default: "2.5"
-    t.datetime "due"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "interval", limit: 2, default: 0
+    t.bigint "problem_id"
+    t.integer "repetitions", limit: 2, default: 0
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["problem_id"], name: "index_reviews_on_problem_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
     t.boolean "admin", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.string "name"
+    t.string "password_digest"
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "notes", "users"
